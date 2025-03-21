@@ -12,15 +12,21 @@ public:
     // }
 
     int BU(int n, int m, vector<vector<int>>& grid){
-        vector<vector<int>> dp(n+1, vector<int>(m+1, INT_MAX));
-        dp[n-1][m-1] = grid[n-1][m-1];
+        // vector<vector<int>> dp(n+1, vector<int>(m+1, INT_MAX));
+        vector<int> curr(m+1, INT_MAX);
+        vector<int> next(m+1, INT_MAX);
+        // dp[n-1][m-1] = grid[n-1][m-1];
+        curr[m-1] = grid[n-1][m-1];
         for(int i=n-1; i>=0; i--){
             for(int j=m-1; j>=0; j--){
                 if(i == n-1 && j == m-1) continue;
-                dp[i][j] = grid[i][j] + min(dp[i+1][j] , dp[i][j+1]);
+                // dp[i][j] = grid[i][j] + min(dp[i+1][j] , dp[i][j+1]);
+                curr[j] = grid[i][j] + min(curr[j+1], next[j]);
             }
+            next = curr;
         }
-        return dp[0][0];
+        // return dp[0][0];
+        return curr[0];
     }
 
     int minPathSum(vector<vector<int>>& grid) {
