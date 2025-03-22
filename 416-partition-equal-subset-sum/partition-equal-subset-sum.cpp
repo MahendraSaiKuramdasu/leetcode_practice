@@ -15,22 +15,27 @@ public:
     // }
 
     bool BU(int n, int sum, vector<int>& nums){
-        vector<vector<int>> dp(n, vector<int>(sum*2+1, 0));
-        for(int i=0; i<n; i++){
-            dp[i][0] = 1;
-        }
-        dp[0][nums[0]] = 1;
+        // vector<vector<int>> dp(n, vector<int>(sum*2+1, 0));
+        vector<int> pre(sum*2+1, 0);
+        vector<int> curr(sum*2+1, 0);
+        pre[0] = 1;
+        pre[nums[0]] = 1;
         for(int i=1; i<n; i++){
             for(int j=0; j<=sum; j++){
-                int exclude = dp[i-1][j];
+                // int exclude = dp[i-1][j];
+                int exclude = pre[j];
                 int include = 0;
                 if(j - nums[i] >= 0){
-                    include = dp[i-1][j - nums[i]];
+                    // include = dp[i-1][j - nums[i]];
+                    include = pre[j - nums[i]];
                 }
-                dp[i][j] = include || exclude;
+                // dp[i][j] = include || exclude;
+                curr[j] = include || exclude;
             }
+            pre = curr;
         }
-        return dp[n-1][sum];
+        // return dp[n-1][sum];
+        return curr[sum];
     }
 
     bool canPartition(vector<int>& nums) {
