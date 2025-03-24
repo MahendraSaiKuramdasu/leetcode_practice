@@ -24,8 +24,8 @@ public:
             sort(right[i].begin(), right[i].end());
         }
 
-        long long mini = LLONG_MAX;
-        for (int i = 0; i <= n; i++) {
+        long long mini = min(abs(sum - 2*(left[n][0])), abs(sum - 2*(right[n][0])));
+        for (int i = 1; i < n; i++) {
             for (auto& a : left[i]) {
                 auto itr = lower_bound(right[n - i].begin(), right[n - i].end(), (sum / 2) - a);
                 if (itr != right[n - i].end()) {
