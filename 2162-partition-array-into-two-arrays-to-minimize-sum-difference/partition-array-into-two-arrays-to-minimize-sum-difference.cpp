@@ -20,7 +20,7 @@ public:
             right[sz].push_back(rt);
         }
 
-        for (int i = 0; i <= n; i++) {
+        for (int i = 1; i < n; i++) {
             sort(right[i].begin(), right[i].end());
         }
 
