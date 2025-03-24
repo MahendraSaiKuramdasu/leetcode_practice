@@ -4,7 +4,6 @@ public:
     int minimumDifference(vector<int>& nums) {
         int N = nums.size();
         int sum = accumulate(nums.begin(), nums.end(), 0);
-        // sort(nums.begin(), nums.end());
         int n = N/2;
         vector<vector<int>> left(n+1), right(n+1);
         for(int maxi=0; maxi<(1<<n); maxi++){
@@ -24,8 +23,8 @@ public:
         for(int i=1; i<n; i++){
             sort(right[i].begin(), right[i].end());
         }
-        int mini = min(abs(sum - 2*left[n][0]), abs(sum - 2*right[n][0]));
         // int mini = INT_MAX;
+        int mini = min(abs(sum - 2*left[n][0]), abs(sum - 2*right[n][0]));
         for(int i=1; i<n; i++){
             for(auto& a : left[i]){
                 int b = sum/2 - a;
