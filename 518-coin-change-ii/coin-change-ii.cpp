@@ -28,26 +28,35 @@ public:
     // }
 
     int BU(int n, int tar, vector<int>& coins){
-        vector<vector<ll>> dp(n, vector<ll>(tar+1, 0));
-        for(int i=0; i<n; i++){
-            dp[i][0] = 1;
-        }
+        // vector<vector<ll>> dp(n, vector<ll>(tar+1, 0));
+        if(n == 1) return tar%coins[0] == 0;
+        vector<ll> pre(tar+1, 0);
+        vector<ll> curr(tar+1, 0);
+        curr[0] = 1;
+        pre[0] = 1;
+        // for(int i=0; i<n; i++){
+        //     dp[i][0] = 1;
+        // }
         for(int i=1; i<=tar; i++){
             if(i%coins[0] == 0){
-                dp[0][i] = 1;
+                // dp[0][i] = 1;
+                pre[i] = 1;
             }
         }
         for(int i=1; i<n; i++){
             for(int j=0; j<=tar; j++){
-                ll exclude = dp[i-1][j];
+                // ll exclude = dp[i-1][j];
+                ll exclude = pre[j];
                 ll include = 0;
                 if(j - coins[i] >= 0){
-                    include = dp[i][j-coins[i]];
+                    // include = dp[i][j-coins[i]];
+                    include = curr[j-coins[i]];
                 }
-                dp[i][j] = (include + exclude)%mod;
+                curr[j] = (include + exclude)%mod;
             }
+            pre = curr;
         }
-        return dp[n-1][tar];
+        return curr[tar];
     }
 
     int change(int amount, vector<int>& coins) {
