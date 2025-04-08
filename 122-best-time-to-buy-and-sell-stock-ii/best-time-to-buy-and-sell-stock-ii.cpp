@@ -17,18 +17,24 @@ public:
     // }
 
     int BU(int n, vector<int>& prices){
-        vector<vector<int>> dp(n+1, vector<int>(2, 0));
+        // vector<vector<int>> dp(n+1, vector<int>(2, 0));
+        vector<int> pre(2, 0);
+        vector<int> curr(2, 0);
         for(int i=n-1; i>=0; i--){
             for(int j=0; j<2; j++){
                 if(j == 1){
-                    dp[i][j] = max(prices[i] + dp[i+1][0], dp[i+1][1]);
+                    // dp[i][j] = max(prices[i] + dp[i+1][0], dp[i+1][1]);
+                    curr[j] = max(prices[i] + pre[0], pre[1]);
                 }
                 else{
-                    dp[i][j] = max(-prices[i] + dp[i+1][1], dp[i+1][0]);
+                    // dp[i][j] = max(-prices[i] + dp[i+1][1], dp[i+1][0]);
+                    curr[j] = max(-prices[i] + pre[1], pre[0]);
                 }
             }
+            pre = curr;
         }
-        return dp[0][0];
+        // return dp[0][0];
+        return pre[0];
     }
 
     int maxProfit(vector<int>& prices) {
