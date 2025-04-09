@@ -10,6 +10,9 @@ public:
         if(p == -1 || nums[p] < nums[i]){
             ans = 1 + TD(i, i+1, n, nums);
         }
+        // else{
+        //     ans = TD(i, i+1, n, nums);
+        // }
         ans = max(ans, TD(p, i+1, n, nums));
         return dp[p+1][i] = ans; 
     }
