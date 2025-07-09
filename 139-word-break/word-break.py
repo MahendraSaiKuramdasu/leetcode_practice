@@ -1,6 +1,6 @@
 def DP(i, j, s, st, dp):
-    if i > j:
-        return False
+    # if i > j:
+    #     return False
     if s[i:j+1] in st:
         return True
 
