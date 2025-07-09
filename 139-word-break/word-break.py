@@ -36,7 +36,6 @@ def Tab(n, s, st):
                             dp[i][j] = True
                             break
 
-    print(dp)
     return dp[0][n-1]
 
 class Solution:
