@@ -1,13 +1,13 @@
 def dfs(i, n, graph, vis, carry, res):
-    vis[i] = 1
+    # vis[i] = 1
     carry = carry.copy()
     carry.append(i)
     if i == n:
         res.append(carry)
     for j in graph[i]:
-        if vis[j] != 1:
+        # if vis[j] != 1:
             dfs(j, n, graph, vis, carry, res)
-    vis[i] = 0
+    # vis[i] = 0
 
 
 class Solution:
