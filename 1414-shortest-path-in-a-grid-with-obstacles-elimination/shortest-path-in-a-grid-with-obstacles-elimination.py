@@ -38,8 +38,6 @@ class Solution:
 
             cnt += 1
 
-        print(vis)
-
         return -1
 
 
