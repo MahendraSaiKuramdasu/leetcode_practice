@@ -40,9 +40,9 @@ class Solution {
                     int curr_abs = Math.max(abs, Math.abs(val - heights[x][y]));
                     if(res[x][y] > curr_abs){
                         res[x][y] = curr_abs;
-                        // if(x != n-1 && y != m-1){
+                        if(x != n-1 || y != m-1){
                             pq.add(new cell(x, y, curr_abs));
-                        // }
+                        }
                     }
                 }
             }
